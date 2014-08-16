@@ -25,7 +25,7 @@ Install [meteor.js](https://www.meteor.com/) and install [meteorite](http://oort
 ## Hosting
 
 ### Modulus
-Modulus.io provides simple and scalable Meteor project hosting.
+Modulus.io provides simple and scalable Meteor project hosting that is more suited for an actual 'production' project vs. [meteor.com](meteor.com) which is not.
 
 #### Setup
 * Install CLI tool: `npm install -g modulus`
