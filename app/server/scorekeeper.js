@@ -23,7 +23,7 @@ Matches.after.update(function (userId, doc, fieldNames, modifier, options) {
   recalc();
 });
 
-Meteor.publish('players', function() {
+Meteor.publish('teams', function() {
   var fields = {
     _id:1,
     date_time: 1,
@@ -32,10 +32,10 @@ Meteor.publish('players', function() {
     wins:1,
     losses:1
   }
-  return Players.find({}, {fields: fields});
+  return Teams.find({}, {fields: fields});
 });
 
-Players.allow({
+Teams.allow({
   insert: function() {
     return true;
   },
@@ -77,8 +77,8 @@ var updateAllRatings = function(doc) {
     red_won = false;
   }
   
-  var user1 = Players.findOne({"_id": doc.ro_id});
-  var user2 = Players.findOne({"_id": doc.bo_id});
+  var user1 = Teams.findOne({"_id": doc.ro_id});
+  var user2 = Teams.findOne({"_id": doc.bo_id});
   
   // Calculate new ratings
   newRating1 = updateRating(user1.rating, user2.rating, red_won);
@@ -98,14 +98,14 @@ var updateAllRatings = function(doc) {
   }
   
   // Update user data
-  Players.update(user1._id,{
+  Teams.update(user1._id,{
     $set : {
       'rating':newRating1,
       'wins':newWins1,
       'losses':newLosses1
     }
   });
-  Players.update(user2._id,{
+  Teams.update(user2._id,{
     $set : {
       'rating':newRating2,
       'wins':newWins2,
@@ -118,10 +118,10 @@ var recalc = function() {
   console.log('recalculating ratings');
 
   var INITIAL_RATING = 1200;
-  var players = Players.find({}, {sort: {date_time: 1}});
-  players.forEach(function(player) {
+  var teams = Teams.find({}, {sort: {date_time: 1}});
+  teams.forEach(function(team) {
     // add an initial rating for each rating being tracked
-    Players.update(player._id,{
+    Teams.update(team._id,{
       $set : {
         'rating':INITIAL_RATING,
         'wins': 0,
@@ -151,14 +151,7 @@ Meteor.methods({
 });
 
 Meteor.startup(function() {
-  if(Players.find().count()>0 && Matches.find().count()>0) {
+  if(Teams.find().count()>0 && Matches.find().count()>0) {
     recalc();
   }
-  if(Meteor.users.find().count()===0)
-    {
-      Accounts.createUser({
-        username: "admin",
-        password: "changeme"
-      });
-    }
 });

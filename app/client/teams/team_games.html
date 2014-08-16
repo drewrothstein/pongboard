@@ -1,4 +1,4 @@
-<template name="player_games">
+<template name="team_games">
   <div class="container-fluid">
     <div class="row">
       <h3 align="center">Recent Games</h3>
@@ -14,7 +14,7 @@
         </thead>
         <tbody>
           {{#each matches}}
-            {{> player_game_row}}
+            {{> team_game_row}}
           {{/each}}
         </tbody>
       </table>
@@ -22,16 +22,16 @@
   </div>
 </template>
 
-<template name="player_game_row">
+<template name="team_game_row">
   <tr>
     <td>{{formatDate date_time}}</td>
-    {{#if isPlayer .. ro_id}}
-      <td><a href="{{pathFor 'player_page' _id=bo_id}}">{{findPlayerFromId bo_id}}</a></td>
+    {{#if isTeam .. ro_id}}
+      <td><a href="{{pathFor 'team_page' _id=bo_id}}">{{findTeamFromId bo_id}}</a></td>
       <td>{{getResult rs bs}}</td>
       <td>{{rs}}</td>
       <td>{{bs}}</td>
     {{else}}
-      <td><a href="{{pathFor 'player_page' _id=ro_id}}">{{findPlayerFromId ro_id}}</a></td>
+      <td><a href="{{pathFor 'team_page' _id=ro_id}}">{{findTeamFromId ro_id}}</a></td>
       <td>{{getResult bs rs}}</td>
       <td>{{bs}}</td>
       <td>{{rs}}</td>

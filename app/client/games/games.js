@@ -1,7 +1,7 @@
 Template.game_form.helpers({
-  players: function() {
+  teams: function() {
     var p = [];
-    var uTemp = Players.find({}, {sort: {name: 1}});
+    var uTemp = Teams.find({}, {sort: {name: 1}});
     uTemp.forEach(function(u) {
       var ret = { 
         value: u._id, 

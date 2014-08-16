@@ -1,9 +1,5 @@
-Accounts.ui.config({
-  passwordSignupFields: 'USERNAME_ONLY'
-});
-
 Deps.autorun(function(){
-  Meteor.subscribe('players');
+  Meteor.subscribe('teams');
   Meteor.subscribe('matches');
 });
 
@@ -65,9 +61,9 @@ UI.registerHelper('roundRating', function(context, options) {
   }
 });
 
-UI.registerHelper('findPlayerFromId', function(context, options){
+UI.registerHelper('findTeamFromId', function(context, options){
   if(context) {
-    return Players.findOne({_id: context}).name;
+    return Teams.findOne({_id: context}).name;
   }
 });
 
@@ -87,12 +83,12 @@ UI.registerHelper('getResult', function(thisScore, theirScore) {
   }
 });
 
-UI.registerHelper('getRank', function(playerId) {
-  var players = Players.find({}, {sort: {rating: -1}}).fetch();
+UI.registerHelper('getRank', function(teamId) {
+  var teams = Teams.find({}, {sort: {rating: -1}}).fetch();
   
   // TODO could this use an indexOf somehow, instead of a for loop?
-  for (var i=0; i< players.length; i++) {
-    if(playerId == players[i]._id) {
+  for (var i=0; i< teams.length; i++) {
+    if(teamId == teams[i]._id) {
       return i+1;
     }
   }

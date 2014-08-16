@@ -1,4 +1,4 @@
-<template name="playerTableWrapper">
+<template name="teamTableWrapper">
   <table class="table table-hover table-striped" id="rankings_table">
       <thead>
         <tr>
@@ -19,16 +19,16 @@
     </table>
 </template>
 
-<template name="player_row">
+<template name="team_row">
   <tr>
     <td>{{getRank _id}}</td>
-    <td><a href="{{pathFor 'player_page'}}">{{name}}</a></td>
+    <td><a href="{{pathFor 'team_page'}}">{{name}}</a></td>
     <td>{{wins}}</td>
     <td>{{losses}}</td>
     <td>{{winPercentage wins losses}}</td>
     <td>{{roundRating rating}}</td>
     {{#if currentUser}}
-      <td><a href="{{pathFor 'edit_player'}}">Edit</a></td>
+      <td><a href="{{pathFor 'edit_team'}}">Edit</a></td>
     {{/if}}
   </tr>
 </template>

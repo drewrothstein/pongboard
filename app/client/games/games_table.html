@@ -3,9 +3,9 @@
     <thead>
       <tr>
         <th>Date/Time</th>
-        <th>Player 1</th>
+        <th>Team 1</th>
         <th>Score</th>
-        <th>Player 2</th>
+        <th>Team 2</th>
         <th>Score</th>
         {{#if currentUser}}
           <th>Admin</th>
@@ -21,9 +21,9 @@
 <template name="game_row">
   <tr>
     <td>{{formatDate date_time}}</td>
-    <td class="{{getResultClass rs bs}}"><a href="{{pathFor 'player_page' _id=ro_id}}">{{findPlayerFromId ro_id}}</a></td>
+    <td class="{{getResultClass rs bs}}"><a href="{{pathFor 'team_page' _id=ro_id}}">{{findTeamFromId ro_id}}</a></td>
     <td class="{{getResultClass rs bs}}">{{rs}}</td>
-    <td class="{{getResultClass bs rs}}"><a href="{{pathFor 'player_page' _id=bo_id}}">{{findPlayerFromId bo_id}}</a></td>
+    <td class="{{getResultClass bs rs}}"><a href="{{pathFor 'team_page' _id=bo_id}}">{{findTeamFromId bo_id}}</a></td>
     <td class="{{getResultClass bs rs}}">{{bs}}</td>
     {{#if currentUser}}
     <td>

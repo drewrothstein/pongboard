@@ -1,4 +1,4 @@
-<template name="player_opponents">
+<template name="team_opponents">
   <h3 align="center">Opponents</h3>
   <table class="table table-hover table-striped" id="games_table">
     <thead>
@@ -9,9 +9,9 @@
       </tr>
     </thead>
     <tbody>
-      {{#each getOpponents this.currentPlayer}}
+      {{#each getOpponents this.currentTeam}}
       <tr>
-        <td><a href="{{pathFor 'player_page' _id=playerId}}">{{findPlayerFromId playerId}}</a></td>
+        <td><a href="{{pathFor 'team_page' _id=teamId}}">{{findTeamFromId teamId}}</a></td>
         <td>{{count}}</td>
         <td>{{wins}}-{{losses}} ({{winPercentage wins losses}}%)</td>
       </tr>

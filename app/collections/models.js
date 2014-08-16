@@ -7,25 +7,25 @@ Matches = new Meteor.Collection('matches', {
     },
     ro_id: {
       type: String,
-      label: 'Player 1*',
+      label: 'Team 1*',
       custom: function () {
         if (this.value == this.field('bo_id').value) {
-          return "samePlayer";
+          return "sameTeam";
         }
       }
     },
     bo_id: {
       type: String,
-      label: 'Player 2*',
+      label: 'Team 2*',
       custom: function () {
         if (this.value == this.field('ro_id').value) {
-          return "samePlayer";
+          return "sameTeam";
         }
       }
     },
     rs: {
       type: Number,
-      label: 'Player 1 Score*',
+      label: 'Team 1 Score*',
       min: 0,
       custom: function() {
         var thisScore = this.value;
@@ -35,7 +35,7 @@ Matches = new Meteor.Collection('matches', {
     },
     bs: {
       type: Number,
-      label: 'Player 2 Score*',
+      label: 'Team 2 Score*',
       min: 0,
       custom: function() {
         var thisScore = this.value;
@@ -46,16 +46,16 @@ Matches = new Meteor.Collection('matches', {
   }
 });
 
-Players = new Meteor.Collection('players', {
+Teams = new Meteor.Collection('teams', {
   schema: {
     name: {
       type: String,
       label: 'Name*',
       min: 2,
       custom: function() {
-        var id = Players.findOne({name: this.value});
+        var id = Teams.findOne({name: this.value});
         if (id) {
-          // player already in database, no need to add again
+          // team already in database, no need to add again
           console.log('id already exists: ' + id._id);
           return "alreadyExists";
         }
@@ -80,15 +80,15 @@ Players = new Meteor.Collection('players', {
 });
 
 Matches.simpleSchema().messages({
-  "samePlayer": "Players can not be the same",
+  "sameTeam": "Teams can not be the same",
   "winBy2": "Winner must win by at least 2 points",
   "sameScore": "Game cannot end in a tie",
   "playTo11": "Winner must have at least 11 points",
   "illegalOvertime": "Winner can't win by more than 2 points if opponent has at least 10 points"
 });
 
-Players.simpleSchema().messages({
-  "alreadyExists": "Player already exists"
+Teams.simpleSchema().messages({
+  "alreadyExists": "Team already exists"
 });
 
 var checkScore = function(thisScore, theirScore) {

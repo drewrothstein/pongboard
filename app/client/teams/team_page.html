@@ -1,14 +1,14 @@
-<template name="player_page">
+<template name="team_page">
   <h1><b>{{name}}</b></h1>
   <p><b>Rank: </b>{{getRank this._id}}</p>
   <p><b>Rating: </b>{{roundRating rating}}</p>
   <p><b>Record: </b>{{wins}}-{{losses}} ({{winPercentage wins losses}}%)</p>
   <div class="row">
     <div class="col-sm-6">
-      {{> player_opponents currentPlayer=this._id}}
+      {{> team_opponents currentTeam=this._id}}
     </div>
     <div class="col-sm-6">
-      {{> player_games}}
+      {{> team_games}}
     </div>
   </div>
 </template>

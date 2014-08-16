@@ -1,0 +1,11 @@
+<template name="team_list">
+  <div class="container-fluid">
+    <h2 align="center">Teams</h2>
+    <h4>{{teamCount}} teams</h4>
+    {{#teamTableWrapper}}
+      {{#each teams}}
+        {{> team_row}}
+      {{/each}}
+    {{/teamTableWrapper}}
+  </div>
+</template>

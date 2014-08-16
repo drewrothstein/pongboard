@@ -10,7 +10,7 @@ Router.map(function() {
   this.route('home', {
     path: '/',
     waitOn: function() {
-      return [Meteor.subscribe('players'),
+      return [Meteor.subscribe('teams'),
               Meteor.subscribe('matches', {sort: {date_time: -1}, limit: 10})];
     }
   });
@@ -23,7 +23,7 @@ Router.map(function() {
       game: null
     },
     waitOn: function() {
-      return [Meteor.subscribe('players'),
+      return [Meteor.subscribe('teams'),
               Meteor.subscribe('matches', {sort: {date_time: -1}, limit: 10})];
     }
   });
@@ -36,32 +36,32 @@ Router.map(function() {
       return { formType: "update", game: match};
     },
     waitOn: function() {
-      return [Meteor.subscribe('players'),
+      return [Meteor.subscribe('teams'),
               Meteor.subscribe('matches', {sort: {date_time: -1}, limit: 10})];
     }
   });
   
-  // Add Player
-  this.route('add_player', {
-    path: '/players/add',
+  // Add Team
+  this.route('add_team', {
+    path: '/teams/add',
     data: {
       formType: "insert",
-      player: null
+      team: null
     },
     waitOn: function() {
-      return [Meteor.subscribe('players')];
+      return [Meteor.subscribe('teams')];
     }
   });
   
   // Edit game
-  this.route('edit_player', {
-    path: '/players/:_id/edit',
+  this.route('edit_team', {
+    path: '/teams/:_id/edit',
     data: function(){
-      p = Players.findOne(this.params._id);
-      return { formType: "update", player: p};
+      p = Teams.findOne(this.params._id);
+      return { formType: "update", team: p};
     },
     waitOn: function() {
-      return [Meteor.subscribe('players')];
+      return [Meteor.subscribe('teams')];
     }
   });
 
@@ -69,7 +69,7 @@ Router.map(function() {
   this.route('rankings', {
     path: '/rankings',
     waitOn: function() {
-      return [Meteor.subscribe('players'),
+      return [Meteor.subscribe('teams'),
               Meteor.subscribe('matches')];
     }
   });
@@ -78,28 +78,28 @@ Router.map(function() {
   this.route('game_list', {
     path: '/games',
     waitOn: function() {
-      return [Meteor.subscribe('players'),
+      return [Meteor.subscribe('teams'),
               Meteor.subscribe('matches')];
     }
   });
   
-  // Player List
-  this.route('player_list', {
-    path: '/players',
+  // Team List
+  this.route('team_list', {
+    path: '/teams',
     waitOn: function() {
-      return [Meteor.subscribe('players')];
+      return [Meteor.subscribe('teams')];
     }
   });
   
-  // Individual Player Page
-  this.route('player_page', {
-    path: '/players/:_id',
+  // Individual Team Page
+  this.route('team_page', {
+    path: '/teams/:_id',
     waitOn: function() {
-      return [Meteor.subscribe('players'),
+      return [Meteor.subscribe('teams'),
               Meteor.subscribe('matches')];
     },
     data: function() { 
-      return Players.findOne(this.params._id);
+      return Teams.findOne(this.params._id);
     }
   });
 

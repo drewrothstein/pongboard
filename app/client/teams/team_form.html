@@ -1,5 +1,5 @@
-<template name="player_form">
-  {{#autoForm collection="Players" id="playerForm" doc=player type=formType}}
+<template name="team_form">
+  {{#autoForm collection="Teams" id="teamForm" doc=team type=formType}}
     <fieldset>
       <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
@@ -8,7 +8,7 @@
           </div>
           <div style="text-align:center">
             <button type="submit" class="btn btn-primary">Submit</button>
-            {{#if player}}
+            {{#if team}}
             <button type="button" class="btn btn-warning cancel">Cancel</button>
             {{/if}}
           </div>
