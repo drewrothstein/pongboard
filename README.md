@@ -1,8 +1,8 @@
 # pongboard
 
-Original: https://github.com/gui81/scorekeeper
-
-Modified: https://github.com/rtfoley/pongboard
+Sources:
+* https://github.com/gui81/scorekeeper
+* https://github.com/rtfoley/pongboard
 
 ## Quick Start
 
