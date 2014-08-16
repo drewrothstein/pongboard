@@ -1,21 +1,21 @@
 {
-  "name": "scorekeeper",
+  "name": "pongboard",
   "version": "0.1.0",
-  "description": "a simple web interface for keeping track of scores and providing some statistical information for players/matches in foosball.",
+  "description": "A simple web interface for keeping track of scores and providing some statistical information for teams/matches in table tennis.",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/gui81/scorekeeper.git"
+    "url": "git://github.com/drewrothstein/pongboard.git"
   },
-  "author": "Lucas Johnson",
+  "author": "Drew Rothstein",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gui81/scorekeeper/issues"
+    "url": "https://github.com/drewrothstein/pongboard/issues"
   },
-  "homepage": "https://github.com/gui81/scorekeeper",
+  "homepage": "https://github.com/drewrothstein/pongboard",
   "devDependencies": {
     "grunt": "^0.4.4",
     "grunt-contrib-jshint": "^0.10.0",
