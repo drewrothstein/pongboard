@@ -1,5 +1,5 @@
 =============================================
-scorekeeper is licensed under the MIT License
+pongboard is licensed under the MIT License
 =============================================
 
 Copyright (C) 2014 Lucas Johnson
