@@ -7,9 +7,7 @@
           <th>Wins</th>
           <th>Losses</th>
           <th>Win %</th>
-          {{#if currentUser}}
-            <th>Admin</th>
-          {{/if}}
+          <th>Admin</th>
         </tr>
       </thead>
       <tbody>
@@ -25,8 +23,6 @@
     <td>{{wins}}</td>
     <td>{{losses}}</td>
     <td>{{winPercentage wins losses}}</td>
-    {{#if currentUser}}
-      <td><a href="{{pathFor 'edit_team'}}">Edit</a></td>
-    {{/if}}
+    <td><a href="{{pathFor 'edit_team'}}">Edit</a></td>
   </tr>
 </template>
