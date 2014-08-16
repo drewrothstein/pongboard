@@ -33,7 +33,7 @@ Modulus.io provides simple and scalable Meteor project hosting that is more suit
 * Login: `modulus login`
 * Create Project: `modulus project create`
 * Create Database: (only able to be completed through WebUI currently)
-* Deploy Project: `modulus deploy`
+* Deploy Project: `modulus deploy` (from pongboard/app directory)
 * Set MongoDB URL:
   * `modulus env set MONGO_URL "mongodb://user:pass@proximus.modulusmongo.net:27017/<ID_FROM_CREATE_DATABASE>?autoReconnect=true&connectTimeoutMS=60000"`
 * Set Root URL:
