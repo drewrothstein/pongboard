@@ -13,5 +13,5 @@ Sources:
 Install [meteor.js] (https://www.meteor.com/) and install [meteorite] (http://oortcloud.github.io/meteorite/).
 
 ### Run
-    cd pongboard
+    cd pongboard/app
     mrt
