@@ -1,6 +1,6 @@
 Template.rankings.helpers({
   teams: function() {
-    return Teams.find({$or: [{ wins: {$gt: 0}}, {losses: {$gt: 0}}]}, {sort: {rating: -1}});
+    return Teams.find({$or: [{ wins: {$gt: 0}}, {losses: {$gt: 0}}]}, {sort: {wins: -1}});
   }
 });
 
@@ -100,11 +100,10 @@ Template.team_opponents.helpers({
 // Form hooks
 AutoForm.hooks({
   teamForm: {
-    // add timestamp, and initial values for rating, wins, and losses.
+    // add timestamp, and initial values for wins and losses.
     before: {
       insert: function(doc, template) {
         doc.date_time = Date.now();
-        doc.rating = 1200;
         doc.wins = 0;
         doc.losses = 0;
         return doc;

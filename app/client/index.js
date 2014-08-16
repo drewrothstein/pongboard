@@ -41,7 +41,8 @@ Meteor.Spinner.options = {
 
 UI.registerHelper('formatDate', function(context, options) {
   if(context) {
-    return moment(context).format('MMMM Do YYYY, h:mm:ss a');
+    //return moment(context).format('MMMM Do YYYY, h:mm:ss a');
+    return moment(context).fromNow();
   }
 });
 
@@ -52,12 +53,6 @@ UI.registerHelper('winPercentage', function(wins, losses){
     return "---"
   } else {
     return Math.round(wins/totalGames*100);
-  }
-});
-  
-UI.registerHelper('roundRating', function(context, options) {
-  if(context) {
-    return Math.round(context);
   }
 });
 
@@ -84,7 +79,7 @@ UI.registerHelper('getResult', function(thisScore, theirScore) {
 });
 
 UI.registerHelper('getRank', function(teamId) {
-  var teams = Teams.find({}, {sort: {rating: -1}}).fetch();
+  var teams = Teams.find({}, {sort: {wins: -1}}).fetch();
   
   // TODO could this use an indexOf somehow, instead of a for loop?
   for (var i=0; i< teams.length; i++) {

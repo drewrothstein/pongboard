@@ -7,7 +7,6 @@
           <th>Wins</th>
           <th>Losses</th>
           <th>Win %</th>
-          <th>Rating</th>
           {{#if currentUser}}
             <th>Admin</th>
           {{/if}}
@@ -26,7 +25,6 @@
     <td>{{wins}}</td>
     <td>{{losses}}</td>
     <td>{{winPercentage wins losses}}</td>
-    <td>{{roundRating rating}}</td>
     {{#if currentUser}}
       <td><a href="{{pathFor 'edit_team'}}">Edit</a></td>
     {{/if}}

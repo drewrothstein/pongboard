@@ -27,8 +27,7 @@ Meteor.publish('teams', function() {
   var fields = {
     _id:1,
     date_time: 1,
-    name:1, 
-    rating:1,
+    name:1,
     wins:1,
     losses:1
   }
@@ -45,32 +44,9 @@ Teams.allow({
   fetch: []
 });
 
-
-// define some constants for Elo Ratings
-// we are using the Bonzini USA values:
-//   http://www.bonziniusa.com/foosball/tournament/TournamentRankingSystem.html
-var K_RATING_COEFFICIENT = 50;
-var F_RATING_INTERVAL_SCALE_WEIGHT = 1000;
-
-var winExpectancy = function(rating, opponent_rating) {
-  var We = 1 / (
-    Math.pow(10, (-(rating - opponent_rating) /
-                  F_RATING_INTERVAL_SCALE_WEIGHT)) + 1);
-  return We;
-};
-
-var updateRating = function(rating, opponent_rating, win) {
-  
-  var S = (win ? 1 : 0);
-  var We = winExpectancy(rating, opponent_rating);
-  var Rn = rating + (K_RATING_COEFFICIENT * (S - We));
-  
-  return Math.round(Rn);
-};
-
 var updateAllRatings = function(doc) {
   var red_won;
-  var newRating1, newRating2, newWins1, newWins2, newLosses1, newLosses2;
+  var newWins1, newWins2, newLosses1, newLosses2;
   if (parseInt(doc.rs) > parseInt(doc.bs)) {
     red_won = true;
   } else {
@@ -79,10 +55,6 @@ var updateAllRatings = function(doc) {
   
   var user1 = Teams.findOne({"_id": doc.ro_id});
   var user2 = Teams.findOne({"_id": doc.bo_id});
-  
-  // Calculate new ratings
-  newRating1 = updateRating(user1.rating, user2.rating, red_won);
-  newRating2 = updateRating(user2.rating, user1.rating, !red_won);
   
   // Calculate new win/ loss counts
   if(red_won) {
@@ -100,14 +72,12 @@ var updateAllRatings = function(doc) {
   // Update user data
   Teams.update(user1._id,{
     $set : {
-      'rating':newRating1,
       'wins':newWins1,
       'losses':newLosses1
     }
   });
   Teams.update(user2._id,{
     $set : {
-      'rating':newRating2,
       'wins':newWins2,
       'losses':newLosses2
     }
@@ -117,13 +87,11 @@ var updateAllRatings = function(doc) {
 var recalc = function() {
   console.log('recalculating ratings');
 
-  var INITIAL_RATING = 1200;
   var teams = Teams.find({}, {sort: {date_time: 1}});
   teams.forEach(function(team) {
     // add an initial rating for each rating being tracked
     Teams.update(team._id,{
       $set : {
-        'rating':INITIAL_RATING,
         'wins': 0,
         'losses': 0
       }
