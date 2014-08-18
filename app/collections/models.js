@@ -27,6 +27,8 @@ Matches = new Meteor.Collection('matches', {
       type: Number,
       label: 'Team 1 Games Won*',
       min: 0,
+      optional: true,
+      defaultValue: 0,
       custom: function() {
         var teamOneGamesWon = this.value;
         var teamTwoGamesWon = this.field('bs').value;
@@ -37,6 +39,8 @@ Matches = new Meteor.Collection('matches', {
       type: Number,
       label: 'Team 2 Games Won*',
       min: 0,
+      optional: true,
+      defaultValue: 0,
       custom: function() {
         var teamTwoGamesWon = this.value;
         var teamOneGamesWon = this.field('rs').value;
